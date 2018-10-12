@@ -1,4 +1,4 @@
-class Foobar < Formula
+class Macls < Formula
   desc "This is a Description"
   homepage "https://github.com/smashedr/homebrew-test"
   url "https://github.com/JonathanSalwan/binary-samples/blob/master/MachO-OSX-x64-ls?raw=true"
