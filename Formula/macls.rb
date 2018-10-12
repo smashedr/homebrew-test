@@ -11,6 +11,6 @@ def install
   end
 
   test do
-    macls
+    shell_output("macls /tmp")
   end
 end
