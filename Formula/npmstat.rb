@@ -1,4 +1,6 @@
 class Npmstat < Formula
+  include Language::Python::Virtualenv
+
   desc "NPM Package Stats and Info CLI"
   homepage "https://github.com/cssnr/npmstat"
   license "MIT"
