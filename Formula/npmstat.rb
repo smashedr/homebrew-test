@@ -27,7 +27,7 @@ class Npmstat < Formula
   end
 
   def install
-    system "unzip", "*.zip"
+    system "unzip", Dir["*.zip"].first
     chmod 0755, "npmstat"
     bin.install "npmstat"
   end
