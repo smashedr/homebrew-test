@@ -4,7 +4,7 @@ class TomlRun < Formula
   desc "Run Custom pyproject.toml Scripts"
   homepage "https://github.com/cssnr/toml-run"
   license "MIT"
-  version "0.1.0"
+  version "0.0.2"
 
   url "https://github.com/cssnr/toml-run/releases/download/#{version}/toml-run-#{version}.tar.gz"
 
