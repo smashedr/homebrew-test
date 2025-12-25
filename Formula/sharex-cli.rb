@@ -6,19 +6,19 @@ class SharexCli < Formula
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/cssnr/sharex/releases/download/#{version}/macos-amd64.zip"
+      url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/macos-amd64.zip"
     end
     if Hardware::CPU.arm?
-      url "https://github.com/cssnr/sharex/releases/download/#{version}/macos-arm64.zip"
+      url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/macos-arm64.zip"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/cssnr/sharex/releases/download/#{version}/linux-amd64.zip"
+      url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/linux-amd64.zip"
     end
     if Hardware::CPU.arm?
-      url "https://github.com/cssnr/sharex/releases/download/#{version}/linux-arm64.zip"
+      url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/linux-arm64.zip"
     end
   end
 
