@@ -29,7 +29,7 @@ class Npmstat < Formula
   url "https://github.com/cssnr/npmstat/releases/latest/download/linux-amd64.zip"
 
   def install
-    zip_file = Dir.glob("macls-osx*").first
+    zip_file = Dir.glob("*").first
     puts "RETARDS #{zip_file}"
     if zip_file.nil?
       raise "AI IS RETARDED."
