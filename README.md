@@ -11,7 +11,7 @@ Install (Humans)
 
 ```shell
 brew tap smashedr/test
-brew install smashedr/test/npmstat
+brew install npmstat
 ```
 
 Update
