@@ -6,7 +6,7 @@ class Npmstat < Formula
 
   url "https://github.com/cssnr/npmstat/releases/download/#{version}/npmstat-#{version}.tar.gz"
 
-  depends_on "python@3.y"
+  depends_on "python@3.13"
 
   def install
     virtualenv_install_with_resources
