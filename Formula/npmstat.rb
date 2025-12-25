@@ -39,6 +39,6 @@ class Npmstat < Formula
 
   test do
     system "#{bin}/npmstat", "--version"
-    # assert_match "0.1.0", shell_output("#{bin}/npmstat -V")
+    assert_match "#{version}", shell_output("#{bin}/npmstat -V")
   end
 end
