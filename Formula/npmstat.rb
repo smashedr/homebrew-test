@@ -8,7 +8,7 @@ class Npmstat < Formula
 
   url "https://github.com/cssnr/npmstat/releases/download/#{version}/npmstat-#{version}.tar.gz"
 
-  depends_on "python@3.y"
+  depends_on "python"
 
   resource "attrs" do
     url "https://files.pythonhosted.org/packages/6b/5c/685e6633917e101e5dcb62b9dd76946cbb57c26e133bae9e0cd36033c0a9/attrs-25.4.0.tar.gz"
