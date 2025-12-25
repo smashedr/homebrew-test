@@ -29,12 +29,12 @@ class Npmstat < Formula
   url "https://github.com/cssnr/npmstat/releases/latest/download/linux-amd64.zip"
 
   def install
-    zip_file = Dir.glob("*").first
-    puts "RETARDS #{zip_file}"
-    if zip_file.nil?
-      raise "AI IS RETARDED."
-    end
-    system "unzip", zip_file
+    # zip_file = Dir.glob("*").first
+    # puts "RETARDS #{zip_file}"
+    # if zip_file.nil?
+    #   raise "AI IS RETARDED."
+    # end
+    # system "unzip", zip_file
     chmod 0755, "npmstat"
     bin.install "npmstat"
   end
