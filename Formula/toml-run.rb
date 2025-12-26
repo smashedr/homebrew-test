@@ -6,7 +6,7 @@ class TomlRun < Formula
   license "MIT"
   version "1.0.2"
 
-  url "https://github.com/smashedr/test-workflows/releases/download/1.0.2/toml_run-1.0.2.tar.gz"
+  url "https://github.com/cssnr/toml-run/releases/download/#{version}/toml_run-#{version}.tar.gz"
 
   depends_on "python"
 
