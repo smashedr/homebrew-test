@@ -4,7 +4,7 @@ class Npmstat < Formula
   desc "NPM Package Stats and Info CLI"
   homepage "https://github.com/cssnr/npmstat"
   url "https://github.com/cssnr/npmstat/releases/download/0.1.0/npmstat-0.1.0.tar.gz"
-  sha256 "ab3e625ddb513b03ac52fbb53497490892dda76ecf3bc89cf4ed4fdc5aa51cf2"
+  sha256 "016f9c98bb7e98085cb2b4b17b87d2c702975664e4f060c6532e64d1c1a5e797"
   license "MIT"
 
   depends_on "python3"
