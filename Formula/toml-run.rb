@@ -21,6 +21,6 @@ class TomlRun < Formula
   end
 
   test do
-    assert_match "#{version}F", shell_output("#{bin}/toml-run -V")
+    assert_equal "#{version}F", shell_output("#{bin}/toml-run -V")
   end
 end
