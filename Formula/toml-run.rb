@@ -15,11 +15,12 @@ class TomlRun < Formula
   end
 
   def install
+    venv = virtualenv_create(libexec)
     if Formula["python"].version < Version.new("3.11")
       virtualenv_install_with_resources
-    else
-      virtualenv_install_without_resources
+      venv.pip_install resources
     end
+    venv.pip_install_and_link buildpath
   end
 
   test do
