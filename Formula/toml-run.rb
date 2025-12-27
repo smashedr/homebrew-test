@@ -3,10 +3,9 @@ class TomlRun < Formula
 
   desc "Run Custom pyproject.toml Scripts"
   homepage "https://github.com/cssnr/toml-run"
+  url "https://github.com/cssnr/toml-run/releases/download/0.0.2/toml_run-0.0.2.tar.gz"
+  sha256 "f94ef95267c2aee45c12121993b0a85cdd614c60a54e90542753226ed41d8b86"
   license "MIT"
-  version "1.0.3"
-
-  url "https://github.com/cssnr/toml-run/releases/download/#{version}/toml_run-#{version}.tar.gz"
 
   depends_on "python"
 
@@ -15,7 +14,6 @@ class TomlRun < Formula
   end
 
   test do
-    # system "#{bin}/toml-run", "--version"
     assert_match "#{version}", shell_output("#{bin}/toml-run -V")
   end
 end
