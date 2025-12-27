@@ -24,5 +24,10 @@ class TomlRun < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/toml-run -V")
+    (testpath/"pyproject.toml").write <<~TOML
+      [tool.scripts]
+      test = "echo homebrew-test"
+    TOML
+    assert_match "homebrew-test", shell_output("#{bin}/toml-run test")
   end
 end
