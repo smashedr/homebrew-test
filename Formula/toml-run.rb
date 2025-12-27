@@ -28,6 +28,6 @@ class TomlRun < Formula
       [tool.scripts]
       test = "echo homebrew-test"
     TOML
-    assert_match "homebrew-test", shell_output("#{bin}/toml-run test")
+    assert_match "homebrew-Ftest", shell_output("#{bin}/toml-run test")
   end
 end
