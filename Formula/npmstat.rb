@@ -3,7 +3,7 @@ class Npmstat < Formula
 
   desc "NPM Package Stats and Info CLI"
   homepage "https://github.com/cssnr/npmstat"
-  url "https://github.com/cssnr/npmstat/releases/download/0.0.2/npmstat-0.0.2.tar.gz"
+  url "https://github.com/cssnr/npmstat/releases/download/0.1.0/npmstat-0.1.0.tar.gz"
   sha256 "ab3e625ddb513b03ac52fbb53497490892dda76ecf3bc89cf4ed4fdc5aa51cf2"
   license "MIT"
 
