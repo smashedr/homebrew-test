@@ -7,7 +7,7 @@ class TomlRun < Formula
   sha256 "f94ef95267c2aee45c12121993b0a85cdd614c60a54e90542753226ed41d8b86"
   license "MIT"
 
-  depends_on "python"
+  depends_on "python3"
 
   resource "tomli" do
     url "https://files.pythonhosted.org/packages/52/ed/3f73f72945444548f33eba9a87fc7a6e969915e7b1acc8260b30e1f76a2f/tomli-2.3.0.tar.gz"
