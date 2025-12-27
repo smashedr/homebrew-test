@@ -18,6 +18,7 @@ class TomlRun < Formula
     venv = virtualenv_create(libexec, "python3")
     Formula["python"].version < Version.new("3.11") && venv.pip_install(resources)
     venv.pip_install_and_link buildpath
+    bin.install_symlink "run" => "toml-run"
   end
 
   test do
