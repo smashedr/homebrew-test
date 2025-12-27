@@ -3,12 +3,11 @@ class Npmstat < Formula
 
   desc "NPM Package Stats and Info CLI"
   homepage "https://github.com/cssnr/npmstat"
+  url "https://github.com/cssnr/npmstat/releases/download/0.0.2/npmstat-0.0.2.tar.gz"
+  sha256 "ab3e625ddb513b03ac52fbb53497490892dda76ecf3bc89cf4ed4fdc5aa51cf2"
   license "MIT"
-  version "0.1.0"
 
-  url "https://github.com/cssnr/npmstat/releases/download/#{version}/npmstat-#{version}.tar.gz"
-
-  depends_on "python"
+  depends_on "python3"
 
   resource "attrs" do
     url "https://files.pythonhosted.org/packages/6b/5c/685e6633917e101e5dcb62b9dd76946cbb57c26e133bae9e0cd36033c0a9/attrs-25.4.0.tar.gz"
@@ -106,6 +105,6 @@ class Npmstat < Formula
 
   test do
     # system "#{bin}/npmstat", "--version"
-    assert_match "#{version}", shell_output("#{bin}/npmstat -V")
+    assert_match version.to_s, shell_output("#{bin}/npmstat -V")
   end
 end
