@@ -15,7 +15,7 @@ class TomlRun < Formula
   end
 
   def install
-    venv = virtualenv_create(libexec)
+    venv = virtualenv_create(libexec, "python3")
     if Formula["python"].version < Version.new("3.15")
       venv.pip_install resources
     end
