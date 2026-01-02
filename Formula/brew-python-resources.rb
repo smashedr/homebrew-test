@@ -7,12 +7,7 @@ class BrewPythonResources < Formula
   sha256 "c29e04ef0ba655f7dcf8e506c9c04ec3d3b18f52e43f18b321a140c522c2272d"
   license "MIT"
 
-  depends_on "python3"
-
-  resource "pip" do
-    url "https://files.pythonhosted.org/packages/70/53/b309b4a497b09655cb7e07088966881a57d082f48ac3cb54ea729fd2c6cf/pip-25.0.1.tar.gz"
-    sha256 "88f96547ea48b940a3a385494e181e29fb8637898f88d88737c5049780f196ea"
-  end
+  depends_on "python3.13"
 
   resource "attrs" do
     url "https://files.pythonhosted.org/packages/5a/b0/1367933a8532ee6ff8d63537de4f1177af4bff9f3e829baf7331f595bb24/attrs-25.3.0.tar.gz"
@@ -42,6 +37,11 @@ class BrewPythonResources < Formula
   resource "idna" do
     url "https://files.pythonhosted.org/packages/6f/6d/0703ccc57f3a7233505399edb88de3cbd678da106337b9fcde432b65ed60/idna-3.11.tar.gz"
     sha256 "795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902"
+  end
+
+  resource "pip" do
+    url "https://files.pythonhosted.org/packages/70/53/b309b4a497b09655cb7e07088966881a57d082f48ac3cb54ea729fd2c6cf/pip-25.0.1.tar.gz"
+    sha256 "88f96547ea48b940a3a385494e181e29fb8637898f88d88737c5049780f196ea"
   end
 
   resource "platformdirs" do
