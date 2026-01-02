@@ -13,6 +13,16 @@ class GetContributors < Formula
     bin.install "get-contributors.js" => "get-contributors"
   end
 
+  def caveats
+    <<~EOF
+      The get-contributors.js script has been installed.
+
+      $ get-contributors --help
+
+      Documentation: https://vitepress-contributors.cssnr.com/docs/get-contributors
+    EOF
+  end
+
   test do
     assert_match "Usage: get-contributors", shell_output("#{bin}/get-contributors -h")
   end
