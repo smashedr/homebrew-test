@@ -17,11 +17,12 @@ class GetContributors < Formula
     <<~EOF
 
       The get-contributors.js script has been installed.
-      Use the --help flag to see the usage:
 
-      get-contributors --help
+          Use the --help flag to see the usage:
 
-      For more details, see the documentation:
+          get-contributors --help
+
+          For more details, see the documentation:
       https://vitepress-contributors.cssnr.com/docs/get-contributors
 
     EOF
