@@ -1,5 +1,5 @@
 class GetContributors < Formula
-  desc "Script and CLI to Generate GitHub Repository Contributors"
+  desc "CLI and Script to Generate GitHub Repository Contributors"
   homepage "https://vitepress-contributors.cssnr.com/"
   license "GPL-3.0"
 
@@ -15,11 +15,15 @@ class GetContributors < Formula
 
   def caveats
     <<~EOF
+
       The get-contributors.js script has been installed.
+      Use the --help flag to see the usage:
 
-      $ get-contributors --help
+      get-contributors --help
 
-      Documentation: https://vitepress-contributors.cssnr.com/docs/get-contributors
+      For more details, see the documentation:
+      https://vitepress-contributors.cssnr.com/docs/get-contributors
+
     EOF
   end
 

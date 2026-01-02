@@ -3,9 +3,10 @@ class BrewPythonResources < Formula
 
   desc "Update Homebrew Formula Python Resources"
   homepage "https://github.com/cssnr/brew-python-resources"
-  url "https://files.pythonhosted.org/packages/ee/c8/7214befceb583192585de8ac84744f6e65e3b28f7480b01bf653dafe79a3/brew_python_resources-0.0.2b1.tar.gz"
-  sha256 "78d5373d29cabd97fdeaadc2137cda599a48f83db3e305163b6ea8e348b6a8bf"
   license "MIT"
+
+  url "https://files.pythonhosted.org/packages/02/b4/7a80261f399e7a0b1611acb4056d485c3734edc7ff625e61470972e3127c/brew_python_resources-0.0.2.tar.gz"
+  sha256 "44719069bc244bf33806d15dcfa3a9acd43a3abe2f810c1b94e953495cdcf729"
 
   depends_on "python3"
 
