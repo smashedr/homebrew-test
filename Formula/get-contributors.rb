@@ -11,7 +11,7 @@ class GetContributors < Formula
   def install
     chmod 0755, "get-contributors.js"
     bin.install "get-contributors.js"
-    bin.install_symlink "get-contributors" => "get-contributors.js"
+    # bin.install_symlink "get-contributors" => "get-contributors.js"
   end
 
   test do
