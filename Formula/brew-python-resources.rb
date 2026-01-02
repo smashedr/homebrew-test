@@ -7,7 +7,7 @@ class BrewPythonResources < Formula
   sha256 "c29e04ef0ba655f7dcf8e506c9c04ec3d3b18f52e43f18b321a140c522c2272d"
   license "MIT"
 
-  depends_on "python3.13"
+  depends_on "python@3.13"
 
   resource "attrs" do
     url "https://files.pythonhosted.org/packages/5a/b0/1367933a8532ee6ff8d63537de4f1177af4bff9f3e829baf7331f595bb24/attrs-25.3.0.tar.gz"
