@@ -15,7 +15,6 @@ class GetContributors < Formula
 
   def caveats
     <<~EOF
-
       The get-contributors.js script has been installed.
 
         Use the --help flag to see the usage:
