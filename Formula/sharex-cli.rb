@@ -28,6 +28,21 @@ class SharexCli < Formula
     bin.install "sharex"
   end
 
+  def caveats
+    <<~EOF
+      ShareX CLI has been installed.
+
+        Configure the app and view the usage:
+
+        sharex --config
+        sharex --help
+
+      For more details, see the documentation:
+      https://cssnr.github.io/sharex-cli/
+
+    EOF
+  end
+
   test do
     assert_match version.to_s, shell_output("#{bin}/sharex -V")
   end
