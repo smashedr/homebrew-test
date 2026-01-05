@@ -5,8 +5,8 @@ class TomlRun < Formula
   homepage "https://github.com/cssnr/toml-run"
   license "MIT"
 
-  url "https://example.com/toml_run-0.0.34.tar.gz"
-  sha256 "abcd123434"
+  url "https://example.com/toml_run-0.0.35.tar.gz"
+  sha256 "abcd123435"
 
   depends_on "python3"
 
