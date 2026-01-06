@@ -3,10 +3,10 @@ name: "Test"
 on:
   push:
     branches: [master]
-    paths: ["Formula/*.rb", ".github/workflows/test.yaml"]
+    paths: ["Formula/*.rb"]
   pull_request:
     branches: [master]
-    paths: ["Formula/*.rb", ".github/workflows/test.yaml"]
+    paths: ["Formula/*.rb"]
 
 concurrency:
   group: ${{ github.workflow }}
@@ -74,7 +74,9 @@ jobs:
           echo "matrix.formula: ${{ matrix.formula }}"
           filename=$(basename -- "${{ matrix.formula }}")
           echo "filename: ${filename}"
-          formula="${filename%.*}"
+          name="${filename%.*}"
+          echo "name: ${name}"
+          formula="${{ env.tap-name  }}/${name}"
           echo "formula: ${formula}"
           echo "formula=${formula}" >> "$GITHUB_ENV"
           echo "::group::cat ${{ matrix.formula }}"
@@ -94,7 +96,7 @@ jobs:
       - name: "Debug Homebrew"
         run: |
           which brew
-          brew --version
+          brew config
           echo "::group::ls Formula"
           ls -lah "Formula"
           echo "::endgroup::"
@@ -110,11 +112,20 @@ jobs:
 
       - name: "Brew Install"
         run: |
-          brew install "${{ env.tap-name  }}/${{ env.formula }}"
+          brew install "${{ env.formula }}"
+
+      - name: "Brew Info"
+        run: |
+          brew info "${{ env.formula }}"
 
       - name: "Brew Test"
         run: |
-          brew test "${{ env.tap-name  }}/${{ env.formula }}"
+          brew test "${{ env.formula }}"
+
+      - name: "Brew Audit"
+        continue-on-error: true
+        run: |
+          brew audit --strict --new --formula "${{ env.formula }}"
 
       #- name: "Debug Linuxbrew"
       #  continue-on-error: true

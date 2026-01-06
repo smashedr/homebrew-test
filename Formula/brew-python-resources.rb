@@ -1,7 +1,7 @@
 class BrewPythonResources < Formula
   include Language::Python::Virtualenv
 
-  desc "Update Homebrew Formula Python Resources"
+  desc "Update Homebrew Formula Python Resources" # TODO: DEBUG
   homepage "https://github.com/cssnr/brew-python-resources"
   url "https://files.pythonhosted.org/packages/40/9e/cea879ceb3b2d5d6980dd41cb4a2f637b79cbaa0e5b812dd5e0987787d33/brew_python_resources-0.0.3.tar.gz"
   sha256 "078fb5f1abacc4204a04628ab8d183dfed62b418269129a2f2e33ee1cce37114"
