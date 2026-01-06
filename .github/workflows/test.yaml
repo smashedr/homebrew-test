@@ -1,0 +1,139 @@
+name: "Test"
+
+on:
+  #push:
+  #  branches: [master]
+  #  paths: ["Formula/*.rb"]
+  pull_request:
+    branches: [master]
+    paths: ["Formula/*.rb"]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  files:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.changed-files.outputs.all_changed_files }}
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v6
+      - name: "Changed Files"
+        id: changed-files
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+        with:
+          files: "Formula/*.rb"
+          matrix: true
+      - name: "Debug"
+        continue-on-error: true
+        run: |
+          echo "${{ steps.changed-files.outputs.all_changed_files }}"
+
+  test:
+    name: "Test"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: files
+    strategy:
+      fail-fast: false
+      matrix:
+        formula: ${{ fromJSON(needs.files.outputs.matrix) }}
+
+    permissions:
+      contents: read
+
+    env:
+      tap-name: cssnr/tap
+      HOMEBREW_DEVELOPER: 1
+      HOMEBREW_NO_AUTO_UPDATE: 1
+      HOMEBREW_NO_INSTALL_CLEANUP: 1
+      HOMEBREW_NO_INSTALL_UPGRADE: 1
+      HOMEBREW_VERBOSE: 1
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v6
+
+      - name: "Debug event.json"
+        continue-on-error: true
+        run: cat "${GITHUB_EVENT_PATH}"
+      - name: "Debug CTX github"
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
+      - name: "Debug Environment"
+        continue-on-error: true
+        run: env
+
+      - name: "Set Formula"
+        run: |
+          echo "env.tap-name: ${{ env.tap-name  }}"
+          echo "matrix.formula: ${{ matrix.formula }}"
+          filename=$(basename -- "${{ matrix.formula }}")
+          echo "filename: ${filename}"
+          formula="${filename%.*}"
+          echo "formula: ${formula}"
+          echo "formula=${formula}" >> "$GITHUB_ENV"
+          echo "::group::cat ${{ matrix.formula }}"
+          cat ${{ matrix.formula }}
+          echo "::endgroup::"
+
+      #- name: "Cache Restore"
+      #  id: cache-restore
+      #  uses: actions/cache/restore@v4
+      #  with:
+      #    path: /home/linuxbrew/.linuxbrew
+      #    key: linuxbrew
+
+      - name: "Setup Homebrew"
+        uses: Homebrew/actions/setup-homebrew@main
+
+      - name: "Debug Homebrew"
+        run: |
+          which brew
+          brew --version
+          echo "::group::ls Formula"
+          ls -lah "Formula"
+          echo "::endgroup::"
+
+      - name: "Brew Tap"
+        run: |
+          brew tap ${{ env.tap-name  }} "file://${{ github.workspace }}"
+
+      - name: "Brew Tap Info"
+        run: |
+          brew tap-info ${{ env.tap-name  }}
+          brew tap-info ${{ env.tap-name  }} --json
+
+      - name: "Brew Install"
+        run: |
+          brew install "${{ env.tap-name  }}/${{ env.formula }}"
+
+      - name: "Brew Test"
+        run: |
+          brew test "${{ env.tap-name  }}/${{ env.formula }}"
+
+      #- name: "Debug Linuxbrew"
+      #  continue-on-error: true
+      #  run: |
+      #    du -sh /home/linuxbrew/.linuxbrew
+      #    ls -lAh /home/linuxbrew/.linuxbrew
+
+      #- name: "Cache Save"
+      #  id: cache-save
+      #  uses: actions/cache/save@v4
+      #  with:
+      #    path: /home/linuxbrew/.linuxbrew
+      #    key: linuxbrew
+
+      - name: "Send Failure Notification"
+        if: ${{ failure() }}
+        uses: sarisia/actions-status-discord@b8381b25576cb341b2af39926ab42c5056cc44ed # v1.15.5
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          description: |
+            [Homebrew Formula](${{ github.event.repository.html_url }}) Test Failed: **${{ env.formula }}**
+            ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
