@@ -3,10 +3,9 @@ class Npmstat < Formula
 
   desc "NPM Package Stats and Info CLI"
   homepage "https://github.com/cssnr/npmstat"
-  license "MIT"
-
-  url "https://github.com/cssnr/npmstat/releases/download/0.1.0/npmstat-0.1.0.tar.gz"
+  url "https://files.pythonhosted.org/packages/4f/61/d7b697a2fc902972582ab566fabe7728e14f365732d948b6e8554f479efb/npmstat-0.1.0.tar.gz"
   sha256 "ab3e625ddb513b03ac52fbb53497490892dda76ecf3bc89cf4ed4fdc5aa51cf2"
+  license "MIT"
 
   depends_on "python3"
 

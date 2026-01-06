@@ -1,26 +1,17 @@
 class SharexCli < Formula
-  desc "ShareX Command Line Interface Uploader"
+  desc "ShareX Command-Line Interface Uploader"
   homepage "https://github.com/cssnr/sharex-cli"
+  version "0.0.3"
   license "MIT"
 
-  version "0.0.3"
-
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/macos-amd64.zip"
-    end
-    if Hardware::CPU.arm?
-      url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/macos-arm64.zip"
-    end
+    url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/macos-amd64.zip" if Hardware::CPU.intel?
+    url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/macos-arm64.zip" if Hardware::CPU.arm?
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/linux-amd64.zip"
-    end
-    if Hardware::CPU.arm?
-      url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/linux-arm64.zip"
-    end
+    url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/linux-amd64.zip" if Hardware::CPU.intel?
+    url "https://github.com/cssnr/sharex-cli/releases/download/#{version}/linux-arm64.zip" if Hardware::CPU.arm?
   end
 
   def install
