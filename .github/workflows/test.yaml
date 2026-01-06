@@ -1,12 +1,12 @@
 name: "Test"
 
 on:
-  #push:
-  #  branches: [master]
-  #  paths: ["Formula/*.rb"]
+  push:
+    branches: [master]
+    paths: ["Formula/*.rb", ".github/workflows/test.yaml"]
   pull_request:
     branches: [master]
-    paths: ["Formula/*.rb"]
+    paths: ["Formula/*.rb", ".github/workflows/test.yaml"]
 
 concurrency:
   group: ${{ github.workflow }}
