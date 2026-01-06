@@ -1,7 +1,7 @@
 class BrewPythonResources < Formula
   include Language::Python::Virtualenv
 
-  desc "Update Homebrew Formula Python Resources" # TODO: DEBUG
+  desc "Update Homebrew Formula Python Resources"
   homepage "https://github.com/cssnr/brew-python-resources"
   url "https://files.pythonhosted.org/packages/40/9e/cea879ceb3b2d5d6980dd41cb4a2f637b79cbaa0e5b812dd5e0987787d33/brew_python_resources-0.0.3.tar.gz"
   sha256 "078fb5f1abacc4204a04628ab8d183dfed62b418269129a2f2e33ee1cce37114"
@@ -59,7 +59,7 @@ class BrewPythonResources < Formula
     sha256 "68abc986fdc5b8d0911318fbb5f7c80eebcd4d01bfacc6685ecf8876052511d1"
   end
 
-  resource "typing_extensions" do
+  resource "typing-extensions" do
     url "https://files.pythonhosted.org/packages/f6/37/23083fcd6e35492953e8d2aaaa68b860eb422b34627b13f2ce3eb6106061/typing_extensions-4.13.2.tar.gz"
     sha256 "e6c81219bd689f51865d9e372991c540bda33a0379d5573cddb9a3a23f7caaef"
   end

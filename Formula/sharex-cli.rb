@@ -1,5 +1,5 @@
 class SharexCli < Formula
-  desc "ShareX Command-Line Interface Uploader"
+  desc "ShareX Command-Line Interface Uploader" # TODO: DEBUG
   homepage "https://github.com/cssnr/sharex-cli"
   version "0.0.3"
   license "MIT"

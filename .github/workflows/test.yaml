@@ -79,8 +79,11 @@ jobs:
           formula="${{ env.tap-name  }}/${name}"
           echo "formula: ${formula}"
           echo "formula=${formula}" >> "$GITHUB_ENV"
+          echo "::group::ls Formula"
+          ls -lah "Formula"
+          echo "::endgroup::"
           echo "::group::cat ${{ matrix.formula }}"
-          cat ${{ matrix.formula }}
+          cat -n ${{ matrix.formula }}
           echo "::endgroup::"
 
       #- name: "Cache Restore"
@@ -97,9 +100,6 @@ jobs:
         run: |
           which brew
           brew config
-          echo "::group::ls Formula"
-          ls -lah "Formula"
-          echo "::endgroup::"
 
       - name: "Brew Tap"
         run: |
