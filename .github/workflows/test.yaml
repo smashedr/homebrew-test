@@ -71,6 +71,12 @@ jobs:
         continue-on-error: true
         run: env
 
+      - name: "TEST ONLY - DO NOT COPY"
+        if: ${{ github.actor == 'cssnr-jenkins[bot]' }}
+        continue-on-error: true
+        run: |
+          exit 1
+
       - name: "Set Formula"
         run: |
           echo "env.tap-name: ${{ env.tap-name  }}"
