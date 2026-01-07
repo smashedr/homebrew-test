@@ -3,8 +3,8 @@ class TomlRun < Formula
 
   desc "Run Custom pyproject.toml Scripts"
   homepage "https://github.com/cssnr/toml-run"
-  url "https://github.com/cssnr/vitepress-plugin-contributors/releases/download/0.0.5/get-contributors.js"
-  sha256 "9309a179f2440f0ea576e31031e87f2c9eda26bc72f5eb5f9924463e75a06ec1"
+  url "https://example.com/toml_run-0.0.43.tar.gz"
+  sha256 "abc12343"
   license "MIT"
 
   depends_on "python3"
