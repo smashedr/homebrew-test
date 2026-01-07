@@ -1,0 +1,64 @@
+name: "Lint"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["**"]
+    paths: &paths
+      - ".github/workflows/**"
+      - "**/*.md"
+      - "**/*.yaml"
+  pull_request:
+    branches: [master]
+    paths: *paths
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: "Lint"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v6
+
+      - name: "Debug event.json"
+        continue-on-error: true
+        run: cat "${GITHUB_EVENT_PATH}"
+      - name: "Debug CTX github"
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
+      - name: "Debug Environment"
+        continue-on-error: true
+        run: env
+
+      - name: "yamllint"
+        if: ${{ !cancelled() }}
+        run: |
+          echo "::group::List Files"
+          yamllint -c .github/yamllint.yaml --list-files .
+          echo "::endgroup::"
+          yamllint -c .github/yamllint.yaml .
+
+      - name: "prettier"
+        if: ${{ !cancelled() }}
+        run: |
+          echo "::group::Install"
+          npm install prettier
+          echo "::endgroup::"
+          npx prettier --check .
+
+      - name: "actionlint"
+        if: ${{ !cancelled() }}
+        uses: cssnr/actionlint-action@v1
+        with:
+          shellcheck_opts: -e SC2012

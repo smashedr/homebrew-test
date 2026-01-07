@@ -1,4 +1,18 @@
-# AI Retarded
+# TESTING ONLY
+
+Do not install formula from this tap!
+
+Use the live tap instead:
+
+- [https://github.com/cssnr/homebrew-tap](https://github.com/cssnr/homebrew-tap?tab=readme-ov-file#readme)
+
+## Brew Commands
+
+Debug
+
+```shell
+export HOMEBREW_VERBOSE=1
+```
 
 Tap
 
@@ -21,5 +35,6 @@ Update
 ```shell
 brew update
 brew reinstall npmstat
-brew upgrade
+
+brew update && brew reinstall npmstat
 ```

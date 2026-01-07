@@ -2,14 +2,14 @@ name: "Test"
 
 on:
   push:
-    branches: [master]
+    branches: ["**"]
     paths: ["Formula/*.rb"]
   pull_request:
     branches: [master]
     paths: ["Formula/*.rb"]
 
 concurrency:
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -20,16 +20,19 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v6
+
       - name: "Changed Files"
         id: changed-files
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
         with:
-          files: "Formula/*.rb"
           matrix: true
-      - name: "Debug"
+          path: "Formula"
+          files: "*.rb"
+
+      - name: "Debug Files"
         continue-on-error: true
         run: |
-          echo "${{ steps.changed-files.outputs.all_changed_files }}"
+          echo '${{ steps.changed-files.outputs.all_changed_files }}'
 
   test:
     name: "Test"
@@ -45,7 +48,7 @@ jobs:
       contents: read
 
     env:
-      tap-name: cssnr/tap
+      tap-name: cssnr/test
       HOMEBREW_DEVELOPER: 1
       HOMEBREW_NO_AUTO_UPDATE: 1
       HOMEBREW_NO_INSTALL_CLEANUP: 1
@@ -72,18 +75,20 @@ jobs:
         run: |
           echo "env.tap-name: ${{ env.tap-name  }}"
           echo "matrix.formula: ${{ matrix.formula }}"
-          filename=$(basename -- "${{ matrix.formula }}")
-          echo "filename: ${filename}"
+
+          filename="${{ matrix.formula }}"
           name="${filename%.*}"
           echo "name: ${name}"
+
           formula="${{ env.tap-name  }}/${name}"
           echo "formula: ${formula}"
           echo "formula=${formula}" >> "$GITHUB_ENV"
+
           echo "::group::ls Formula"
           ls -lah "Formula"
           echo "::endgroup::"
-          echo "::group::cat ${{ matrix.formula }}"
-          cat -n ${{ matrix.formula }}
+          echo "::group::cat Formula/${{ matrix.formula }}"
+          cat -n Formula/${{ matrix.formula }}
           echo "::endgroup::"
 
       #- name: "Cache Restore"
@@ -123,9 +128,18 @@ jobs:
           brew test "${{ env.formula }}"
 
       - name: "Brew Audit"
+        id: audit
         continue-on-error: true
         run: |
           brew audit --strict --new --formula "${{ env.formula }}"
+
+      - name: "Summary"
+        continue-on-error: true
+        run: |
+          if [ "${{ steps.audit.outcome }}" != "success" ];then
+            md="⛔ **Audit Failed.** See the Brew Audit logs for more details."
+            echo -e "${md}" >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       #- name: "Debug Linuxbrew"
       #  continue-on-error: true
@@ -141,10 +155,10 @@ jobs:
       #    key: linuxbrew
 
       - name: "Send Failure Notification"
-        if: ${{ failure() }}
+        if: ${{ failure() && github.ref_name == 'master' }}
         uses: sarisia/actions-status-discord@b8381b25576cb341b2af39926ab42c5056cc44ed # v1.15.5
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           description: |
-            [Homebrew Formula](${{ github.event.repository.html_url }}) Test Failed: **${{ env.formula }}**
-            ${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}
+            [Homebrew Formula](${{ github.server_url }}/${{ github.repository }}) Test Failed: **${{ env.formula }}**
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
