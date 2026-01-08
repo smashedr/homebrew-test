@@ -3,8 +3,8 @@ class TomlRun < Formula
 
   desc "Run Custom pyproject.toml Scripts"
   homepage "https://github.com/cssnr/toml-run"
-  url "https://example.com/toml_run-0.0.41.tar.gz"
-  sha256 "abc12341"
+  url "https://example.com/toml_run-0.0.45.tar.gz"
+  sha256 "abc12345"
   license "MIT"
 
   depends_on "python3"
