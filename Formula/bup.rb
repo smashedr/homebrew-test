@@ -5,21 +5,21 @@
 class Bup < Formula
   desc "Back UP CLI written in Go."
   homepage "https://github.com/smashedr/bup"
-  version "1.0.5"
+  version "1.0.6-beta.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/smashedr/bup/releases/download/1.0.5/bup_Darwin_x86_64.tar.gz"
-      sha256 "28306b3cfa84a88f517c2f23ebaa4d18ee41022f9ae4ff43b9e78c0301b5198f"
+      url "https://github.com/smashedr/bup/releases/download/1.0.6-beta.0/bup_Darwin_x86_64.tar.gz"
+      sha256 "fa34c66aec3bdcec488a1933c812ad94d8881036436f98a4766d79fac27eee91"
 
       def install
         bin.install "bup"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/smashedr/bup/releases/download/1.0.5/bup_Darwin_arm64.tar.gz"
-      sha256 "31b038f296256df6a4f9442a49d449ad0a00aa14772e0870a911b9e2cecc6940"
+      url "https://github.com/smashedr/bup/releases/download/1.0.6-beta.0/bup_Darwin_arm64.tar.gz"
+      sha256 "7e15d69a7ce128ba4ebf9dec0123614ede073bd091f08f26922aa307e45848e5"
 
       def install
         bin.install "bup"
@@ -29,15 +29,15 @@ class Bup < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/bup/releases/download/1.0.5/bup_Linux_x86_64.tar.gz"
-      sha256 "ef0445bfec2691759a103bffc52e837801e1c033fa3d99e2aba21fdcbfc80328"
+      url "https://github.com/smashedr/bup/releases/download/1.0.6-beta.0/bup_Linux_x86_64.tar.gz"
+      sha256 "2e6bb9f566a4152691f8b4efbe0614c21028ea9611fa8ea551096c4bccc1c2c9"
       def install
         bin.install "bup"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/bup/releases/download/1.0.5/bup_Linux_arm64.tar.gz"
-      sha256 "c556bdc9bc1ec308020bbb85e7ce15328c6b28a56940130cbc5db10ca5d4ae19"
+      url "https://github.com/smashedr/bup/releases/download/1.0.6-beta.0/bup_Linux_arm64.tar.gz"
+      sha256 "054b023e4cc881bd2ede99ed4867ca4ddb58c241893619d7bb6847c665efa113"
       def install
         bin.install "bup"
       end
