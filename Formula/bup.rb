@@ -5,21 +5,21 @@
 class Bup < Formula
   desc "Back UP CLI written in Go."
   homepage "https://github.com/smashedr/bup"
-  version "1.0.6"
+  version "1.0.7"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/smashedr/bup/releases/download/1.0.6/bup_Darwin_x86_64.tar.gz"
-      sha256 "0d14014e0cd8f0d2a726e03de32b4a416901c95fc7165f9a23b61c767c9d5e6c"
+      url "https://github.com/smashedr/bup/releases/download/1.0.7/bup_Darwin_x86_64.tar.gz"
+      sha256 "e52c95f5e0b9e31d3691a0bf1045dbc45bfaacefa4bcb27d7d909278de6bbd9d"
 
       def install
         bin.install "bup"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/smashedr/bup/releases/download/1.0.6/bup_Darwin_arm64.tar.gz"
-      sha256 "5e342e2e8068b62fbec6afc68edd5e48b3b9bdf594d91992b0f0a2660016f599"
+      url "https://github.com/smashedr/bup/releases/download/1.0.7/bup_Darwin_arm64.tar.gz"
+      sha256 "af97b0a0435ee25492d9df8925c50008cf08d656e29dc17beb8545f8dbfba038"
 
       def install
         bin.install "bup"
@@ -29,18 +29,32 @@ class Bup < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/bup/releases/download/1.0.6/bup_Linux_x86_64.tar.gz"
-      sha256 "ae8781f9e17082ce5453c7069f68ed5ddd5a6028725155ebe4ba8317a6957684"
+      url "https://github.com/smashedr/bup/releases/download/1.0.7/bup_Linux_x86_64.tar.gz"
+      sha256 "73fb0bc93d1f706844fd8597928a5658bc69c1525326ed494df1a8ef81601dfe"
       def install
         bin.install "bup"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/bup/releases/download/1.0.6/bup_Linux_arm64.tar.gz"
-      sha256 "ae3909f672523b9bc2f6391bbdd3d0258673d3c32eaceb3ec457b7e1f9093054"
+      url "https://github.com/smashedr/bup/releases/download/1.0.7/bup_Linux_arm64.tar.gz"
+      sha256 "9036d89302fc5ef3374ee5e9c1837058072d32887486da6c3c7fea5eef368d3c"
       def install
         bin.install "bup"
       end
     end
+  end
+
+  def caveats
+    <<~EOS
+      <<~EOF
+        View the Documentation:
+        https://smashedr.github.io/bup/
+
+      EOF
+    EOS
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/bup -V")
   end
 end
