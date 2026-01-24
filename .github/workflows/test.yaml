@@ -32,8 +32,10 @@ jobs:
 
       - name: "Debug Files"
         continue-on-error: true
+        env:
+          all_changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          echo '${{ steps.changed-files.outputs.all_changed_files }}'
+          echo "${all_changed_files}"
 
   test:
     name: "Test"
@@ -71,12 +73,6 @@ jobs:
       - name: "Debug Environment"
         continue-on-error: true
         run: env
-
-      - name: "TEST ONLY - DO NOT COPY"
-        if: ${{ github.actor == 'cssnr-jenkins[bot]' }}
-        continue-on-error: true
-        run: |
-          exit 1
 
       - name: "Set Formula"
         run: |

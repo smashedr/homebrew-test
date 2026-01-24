@@ -46,11 +46,9 @@ class Bup < Formula
 
   def caveats
     <<~EOS
-      <<~EOF
-        View the Documentation:
-        https://smashedr.github.io/bup/
+      View the Documentation:
+      https://smashedr.github.io/bup/
 
-      EOF
     EOS
   end
 
