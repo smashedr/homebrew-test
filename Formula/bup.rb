@@ -5,21 +5,21 @@
 class Bup < Formula
   desc "Back UP CLI written in Go."
   homepage "https://github.com/smashedr/bup"
-  version "1.0.7"
+  version "1.0.8"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/smashedr/bup/releases/download/1.0.7/bup_Darwin_x86_64.tar.gz"
-      sha256 "e52c95f5e0b9e31d3691a0bf1045dbc45bfaacefa4bcb27d7d909278de6bbd9d"
+      url "https://github.com/smashedr/bup/releases/download/1.0.8/bup_Darwin_x86_64.tar.gz"
+      sha256 "56b9c057eb6eaabc15ee66fe7452698fe5640c1cf442403c3c82b43edb3fd093"
 
       def install
         bin.install "bup"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/smashedr/bup/releases/download/1.0.7/bup_Darwin_arm64.tar.gz"
-      sha256 "af97b0a0435ee25492d9df8925c50008cf08d656e29dc17beb8545f8dbfba038"
+      url "https://github.com/smashedr/bup/releases/download/1.0.8/bup_Darwin_arm64.tar.gz"
+      sha256 "bae3d76fbf7bdc82b35c9f31eea8a3363a12d61ffa5dda4cedf5d66d86b45465"
 
       def install
         bin.install "bup"
@@ -29,15 +29,15 @@ class Bup < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/bup/releases/download/1.0.7/bup_Linux_x86_64.tar.gz"
-      sha256 "73fb0bc93d1f706844fd8597928a5658bc69c1525326ed494df1a8ef81601dfe"
+      url "https://github.com/smashedr/bup/releases/download/1.0.8/bup_Linux_x86_64.tar.gz"
+      sha256 "9d52a25e599be68aa4b8a3f31d819d965fa642ae2edb3eec9e70b1da28f91442"
       def install
         bin.install "bup"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/bup/releases/download/1.0.7/bup_Linux_arm64.tar.gz"
-      sha256 "9036d89302fc5ef3374ee5e9c1837058072d32887486da6c3c7fea5eef368d3c"
+      url "https://github.com/smashedr/bup/releases/download/1.0.8/bup_Linux_arm64.tar.gz"
+      sha256 "835fd5cb1f5a0222fb323094c9094ea34a7335ffdfeeeca78ac17702fffe87eb"
       def install
         bin.install "bup"
       end
@@ -48,7 +48,6 @@ class Bup < Formula
     <<~EOS
       View the Documentation:
       https://smashedr.github.io/bup/
-
     EOS
   end
 
