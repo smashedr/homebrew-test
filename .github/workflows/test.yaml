@@ -14,6 +14,8 @@ concurrency:
 
 jobs:
   files:
+    name: "Files"
+    if: ${{ !contains(github.event.head_commit.message, '#notest') }}
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.changed-files.outputs.all_changed_files }}

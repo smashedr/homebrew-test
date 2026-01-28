@@ -62,20 +62,61 @@ class Hls < Formula
   def caveats
     app_name = "org.cssnr.hls.downloader"
 
-    <<~EOS
-      To complete installation, you need to link the native messaging manifests:
+    on_macos do
+      <<~EOS
+        To complete installation, you need to link the native messaging manifests:
+  
+        Chrome, Opera, Brave, and More:
+          mkdir -p "~/Library/Application Support/Google/Chrome/NativeMessagingHosts"
+          ln -sf "#{lib}/#{app_name}/chrome-manifest.json ~/Library/Application Support/Google/Chrome/NativeMessagingHosts/#{app_name}.json"
+  
+        Chromium:
+          mkdir -p "~/Library/Application Support/Chromium/NativeMessagingHosts"
+          ln -sf "#{lib}/#{app_name}/chrome-manifest.json ~/Library/Application Support/Chromium/NativeMessagingHosts/#{app_name}.json"
+  
+        Firefox, Waterfox:
+          mkdir -p "~/Library/Application Support/Mozilla/NativeMessagingHosts"
+          ln -sf "#{lib}/#{app_name}/firefox-manifest.json ~/Library/Application Support/Mozilla/NativeMessagingHosts/#{app_name}.json"
+      EOS
+    end
 
-      Chrome:
-        mkdir -p ~/.config/google-chrome/NativeMessagingHosts
-        ln -sf #{lib}/#{app_name}/chrome-manifest.json ~/.config/google-chrome/NativeMessagingHosts/#{app_name}.json
+    on_linux do
+      <<~EOS
+        To complete installation, you need to link the native messaging manifests:
+  
+        Chrome, Opera, Brave, and More:
+          mkdir -p ~/.config/google-chrome/NativeMessagingHosts
+          ln -sf #{lib}/#{app_name}/chrome-manifest.json ~/.config/google-chrome/NativeMessagingHosts/#{app_name}.json
+  
+        Chromium:
+          mkdir -p ~/.config/chromium/NativeMessagingHosts
+          ln -sf #{lib}/#{app_name}/chrome-manifest.json ~/.config/chromium/NativeMessagingHosts/#{app_name}.json
+  
+        Firefox, Waterfox:
+          mkdir -p ~/.mozilla/native-messaging-hosts
+          ln -sf #{lib}/#{app_name}/firefox-manifest.json ~/.mozilla/native-messaging-hosts/#{app_name}.json
+      EOS
+    end
+  end
 
-      Chromium:
-        mkdir -p ~/.config/chromium/NativeMessagingHosts
-        ln -sf #{lib}/#{app_name}/chrome-manifest.json ~/.config/chromium/NativeMessagingHosts/#{app_name}.json
+  test do
+    assert_predicate lib/"#{app_name}/chrome-manifest.json", :exist?
+    assert_predicate lib/"#{app_name}/firefox-manifest.json", :exist?
 
-      Firefox:
-        mkdir -p ~/.mozilla/native-messaging-hosts
-        ln -sf #{lib}/#{app_name}/firefox-manifest.json ~/.mozilla/native-messaging-hosts/#{app_name}.json
+    # cmd = "python3 -c \"import sys, struct; sys.stdout.buffer.write(struct.pack('I', len('{}')) + '{}'.encode())\""
+    # assert_match "Host Client Working.", shell_output("#{cmd} | #{libexec}/client")
+
+    # (testpath/"test.py").write <<~EOS
+    #   import sys, struct
+    #   sys.stdout.buffer.write(struct.pack('I', len('{}')) + '{}'.encode())
+    # EOS
+    # assert_match "Host Client Working.", shell_output("python3 test.py | #{libexec}/client")
+
+    (testpath/"test.sh").write <<~EOS
+      msg='{"text":"hello"}'
+      len=${#msg}
+      printf "\\x$(printf '%02x' $((len&0xff)))\\x$(printf '%02x' $(((len>>8)&0xff)))\\x$(printf '%02x' $(((len>>16)&0xff)))\\x$(printf '%02x' $(((len>>24)&0xff)))%s" "$msg"
     EOS
+    assert_match "Host Client Working.", shell_output("bash test.sh | #{libexec}/client")
   end
 end
