@@ -1,5 +1,5 @@
 class Hls < Formula
-  desc "HLS Video Downloader"
+  desc "Client for the HLS Video Downloader Web Extension"
   homepage "https://github.com/smashedr/hls-downloader-go"
   version "0.0.9"
   license "MIT"
@@ -36,19 +36,19 @@ class Hls < Formula
     chmod 0755, libexec/"client"
 
     chrome_manifest = {
-      "name" => app_name,
-      "description" => description,
-      "path" => "#{libexec}/client",
-      "type" => "stdio",
-      "allowed_origins" => ["chrome-extension://mpmiiaolodhanoalpjncddpmnkbjicbo/"]
+      "name"            => app_name,
+      "description"     => description,
+      "path"            => "#{libexec}/client",
+      "type"            => "stdio",
+      "allowed_origins" => ["chrome-extension://mpmiiaolodhanoalpjncddpmnkbjicbo/"],
     }
 
     firefox_manifest = {
-      "name" => app_name,
-      "description" => description,
-      "path" => "#{libexec}/client",
-      "type" => "stdio",
-      "allowed_extensions" => ["hls-video-downloader@cssnr.com"]
+      "name"               => app_name,
+      "description"        => description,
+      "path"               => "#{libexec}/client",
+      "type"               => "stdio",
+      "allowed_extensions" => ["hls-video-downloader@cssnr.com"],
     }
 
     # Store manifests in Homebrew's lib directory for user to symlink
@@ -63,15 +63,15 @@ class Hls < Formula
     on_macos do
       <<~EOS
         To complete installation, you need to link the native messaging manifests:
-  
+
         Chrome, Opera, Brave, and More:
           mkdir -p "~/Library/Application Support/Google/Chrome/NativeMessagingHosts"
           ln -sf "#{lib}/#{app_name}/chrome-manifest.json ~/Library/Application Support/Google/Chrome/NativeMessagingHosts/#{app_name}.json"
-  
+
         Chromium:
           mkdir -p "~/Library/Application Support/Chromium/NativeMessagingHosts"
           ln -sf "#{lib}/#{app_name}/chrome-manifest.json ~/Library/Application Support/Chromium/NativeMessagingHosts/#{app_name}.json"
-  
+
         Firefox, Waterfox:
           mkdir -p "~/Library/Application Support/Mozilla/NativeMessagingHosts"
           ln -sf "#{lib}/#{app_name}/firefox-manifest.json ~/Library/Application Support/Mozilla/NativeMessagingHosts/#{app_name}.json"
@@ -81,15 +81,15 @@ class Hls < Formula
     on_linux do
       <<~EOS
         To complete installation, you need to link the native messaging manifests:
-  
+
         Chrome, Opera, Brave, and More:
           mkdir -p ~/.config/google-chrome/NativeMessagingHosts
           ln -sf #{lib}/#{app_name}/chrome-manifest.json ~/.config/google-chrome/NativeMessagingHosts/#{app_name}.json
-  
+
         Chromium:
           mkdir -p ~/.config/chromium/NativeMessagingHosts
           ln -sf #{lib}/#{app_name}/chrome-manifest.json ~/.config/chromium/NativeMessagingHosts/#{app_name}.json
-  
+
         Firefox, Waterfox:
           mkdir -p ~/.mozilla/native-messaging-hosts
           ln -sf #{lib}/#{app_name}/firefox-manifest.json ~/.mozilla/native-messaging-hosts/#{app_name}.json
@@ -100,8 +100,8 @@ class Hls < Formula
   test do
     app_name = "org.cssnr.hls.downloader"
 
-    assert_predicate lib/"#{app_name}/chrome-manifest.json", :exist?
-    assert_predicate lib/"#{app_name}/firefox-manifest.json", :exist?
+    assert_path_exists lib/"#{app_name}/chrome-manifest.json"
+    assert_path_exists lib/"#{app_name}/firefox-manifest.json"
 
     # cmd = "python3 -c \"import sys, struct; sys.stdout.buffer.write(struct.pack('I', len('{}')) + '{}'.encode())\""
     # assert_match "Host Client Working.", shell_output("#{cmd} | #{libexec}/client")
