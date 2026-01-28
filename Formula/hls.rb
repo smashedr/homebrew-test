@@ -100,6 +100,8 @@ class Hls < Formula
   end
 
   test do
+    app_name = "org.cssnr.hls.downloader"
+
     assert_predicate lib/"#{app_name}/chrome-manifest.json", :exist?
     assert_predicate lib/"#{app_name}/firefox-manifest.json", :exist?
 
