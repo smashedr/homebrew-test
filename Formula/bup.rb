@@ -5,21 +5,21 @@
 class Bup < Formula
   desc "Back UP CLI written in Go."
   homepage "https://github.com/smashedr/bup"
-  version "1.0.8"
+  version "1.0.9"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/smashedr/bup/releases/download/1.0.8/bup_Darwin_x86_64.tar.gz"
-      sha256 "56b9c057eb6eaabc15ee66fe7452698fe5640c1cf442403c3c82b43edb3fd093"
+      url "https://github.com/smashedr/bup/releases/download/1.0.9/bup_Darwin_x86_64.tar.gz"
+      sha256 "8588701442ce98ca46fe5bd7ab812e98ea7055537ed7c8d83f1deac3d964fdbc"
 
       def install
         bin.install "bup"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/smashedr/bup/releases/download/1.0.8/bup_Darwin_arm64.tar.gz"
-      sha256 "bae3d76fbf7bdc82b35c9f31eea8a3363a12d61ffa5dda4cedf5d66d86b45465"
+      url "https://github.com/smashedr/bup/releases/download/1.0.9/bup_Darwin_arm64.tar.gz"
+      sha256 "4d49457a6a56cee0bf25e75827942dc3b7eca9a89e30aae9fbb8d6142f601a4f"
 
       def install
         bin.install "bup"
@@ -29,15 +29,15 @@ class Bup < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/bup/releases/download/1.0.8/bup_Linux_x86_64.tar.gz"
-      sha256 "9d52a25e599be68aa4b8a3f31d819d965fa642ae2edb3eec9e70b1da28f91442"
+      url "https://github.com/smashedr/bup/releases/download/1.0.9/bup_Linux_x86_64.tar.gz"
+      sha256 "c7a26244614f90280bcb46653de3b557950d223823e95e3954dba2427b6fb7d2"
       def install
         bin.install "bup"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/bup/releases/download/1.0.8/bup_Linux_arm64.tar.gz"
-      sha256 "835fd5cb1f5a0222fb323094c9094ea34a7335ffdfeeeca78ac17702fffe87eb"
+      url "https://github.com/smashedr/bup/releases/download/1.0.9/bup_Linux_arm64.tar.gz"
+      sha256 "b874ce9f3d1523a8782771736ed67fd38f8b012318168a98ce85c531c6794e83"
       def install
         bin.install "bup"
       end
