@@ -15,7 +15,7 @@ class InstallRelease < Formula
 
       def install
         bin.install "ir"
-        # bin.install_symlink "install-release" => "ir"
+        bin.install_symlink "ir" => "install-release"
       end
     end
     if Hardware::CPU.arm?
@@ -24,7 +24,7 @@ class InstallRelease < Formula
 
       def install
         bin.install "ir"
-        # bin.install_symlink "install-release" => "ir"
+        bin.install_symlink "ir" => "install-release"
       end
     end
   end
@@ -35,7 +35,7 @@ class InstallRelease < Formula
       sha256 "58c756a70a3a9df8c6334f46f7a051884144620b50df85736283b8ace914ebdb"
       def install
         bin.install "ir"
-        # bin.install_symlink "install-release" => "ir"
+        bin.install_symlink "ir" => "install-release"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
@@ -43,7 +43,7 @@ class InstallRelease < Formula
       sha256 "b56544065d5d9c3e742f271551257d8dc213e04478002a07fd24bade5308ff6d"
       def install
         bin.install "ir"
-        # bin.install_symlink "install-release" => "ir"
+        bin.install_symlink "ir" => "install-release"
       end
     end
   end
