@@ -5,13 +5,13 @@
 class InstallRelease < Formula
   desc "CLI to Install a GitHub Release"
   homepage "https://smashedr.github.io/install-release"
-  version "0.0.11"
+  version "0.0.12"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/smashedr/install-release/releases/download/0.0.11/ir_Darwin_x86_64.tar.gz"
-      sha256 "b8dcd01c57444fd66ac2ee49bba8ea3f25c5f6457083746e6b0da964d77e1b81"
+      url "https://github.com/smashedr/install-release/releases/download/0.0.12/ir_Darwin_x86_64.tar.gz"
+      sha256 "5670478cabec978133741f9ae48a91b939213e67dfe9aec3cd6e02f5e46c8a8e"
 
       def install
         bin.install "ir"
@@ -19,8 +19,8 @@ class InstallRelease < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/smashedr/install-release/releases/download/0.0.11/ir_Darwin_arm64.tar.gz"
-      sha256 "a7a8a77a2b17ec761def19f541d2159fa2ad0cdc3d613e164eb1ac7850ccee00"
+      url "https://github.com/smashedr/install-release/releases/download/0.0.12/ir_Darwin_arm64.tar.gz"
+      sha256 "4c06743d06a10951bf4fb6183907339d1dd05840cb9e3afceaf4879d88c8e509"
 
       def install
         bin.install "ir"
@@ -31,16 +31,16 @@ class InstallRelease < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/install-release/releases/download/0.0.11/ir_Linux_x86_64.tar.gz"
-      sha256 "037ba838b6c0ae3f7f1bfc53f0fe6a25d7a578e2598698814e51d18f30e2c945"
+      url "https://github.com/smashedr/install-release/releases/download/0.0.12/ir_Linux_x86_64.tar.gz"
+      sha256 "1dd983c61d5dff91ba338bdcd8370f324c547a000ba87d72c66edbe9b4ee2748"
       def install
         bin.install "ir"
         bin.install_symlink "ir" => "install-release"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/smashedr/install-release/releases/download/0.0.11/ir_Linux_arm64.tar.gz"
-      sha256 "0f4191b60a54294b7a5ac9025909c3928ec773560cdbf1199c92fdccc2115ec2"
+      url "https://github.com/smashedr/install-release/releases/download/0.0.12/ir_Linux_arm64.tar.gz"
+      sha256 "39748f59deaf50708fb20c2dd0aa3ad6f4bc3ec325586aa27642263806d83e9a"
       def install
         bin.install "ir"
         bin.install_symlink "ir" => "install-release"
